@@ -1,0 +1,126 @@
+<!--<script src="__INDEX__/templates/zh/en/js/jquery-1.10.1.min.js" type="text/javascript"></script>-->
+<div class="icontact">
+    <div class="icontact_in">
+
+        <div class="fl">
+            <div class="pad">
+                <div class="icon_tit">
+                    <div>Contact Us</div>
+
+                    <p>Welcome your letter ! </p>
+                </div><!--icon_tit-->
+
+                <div class="icon_tit icon_tit2">
+                    <div>Talk to Us</div>
+                    <p>Welcome your suggestion, welcome your letter.</p>
+                </div><!--icon_tit-->
+
+                <table width="100%" border="0" align="center" cellpadding="12" cellspacing="12" class="book_table">
+                    <form method="post"  class="book">
+                        <tr>
+                            <td align="right"><div class="btit">Your Name<p>required</p></div></td>
+                            <td><input style="background-color: white;color: #0c0c0c" type="text" name="qgusername" id="qgusername" class="binput" required="" /></td>
+                        </tr>
+                        <tr>
+                            <td align="right"><div class="btit">Your Email<p>required</p></div></td>
+                            <td><input style="background-color: white;color: #0c0c0c" type="text" name="email" id="email" class="binput" required="" /></td>
+                        </tr>
+                        <tr style="height:82px;">
+                            <td width="120" align="right" valign="top"><div class="btit">Message</div></td>
+                            <td valign="top">
+                                <div style="padding-top:7px;">
+                                    <textarea style="background-color: white;color: #0c0c0c" name="content" id="content" class="btext"></textarea>
+                                 </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td >
+                                <input class="submit" onclick="send();" type="button" value="" style="position:relative;float: right;left: 380%;"/>
+                            </td>
+                            <td></td>
+                        </tr>
+
+                    </form>
+                </table>
+                <script>
+                    function send() {
+                       var addresser = document.getElementById("qgusername").value;
+                        var email = document.getElementById("email").value;
+                        var content = document.getElementById("content").value;
+                        $.ajax({
+                            method: "POST",
+                            url: '{:url("email/index")}',
+                            data: {"addresser":addresser,"email":email,"content":content},
+                            dataType:"json",
+                            success: function(msg){
+                                if(msg["type"] == -1){
+                                    alert("Your name or email address or content cannot be empty");
+                                }else if( msg["type"] == -2){
+                                    alert("Your name or email address should not exceed 64 characters");
+                                }
+                                else if( msg["type"] == -3){
+                                    alert("Your email address is incorrectly formatted");
+                                }else if( msg["type"] == 1){
+                                    alert("Send successful");
+                                }else {
+                                    alert("Sending error");
+                                }
+                            }
+                        });
+                    }
+                </script>
+
+            </div>
+        </div><!--fl-->
+
+        <div class="fi">
+            <div class="pad">
+                <div class="icon_tit" style="margin-top: -30%;">
+                    <div>Find Us</div>
+                    <dl>
+                        <dt>Address:<a href="{:url('contact/index')}" target="_blank" style="text-decoration:none">&nbsp;{$sys.address}</a></dt>
+                        <dt></dt>
+                        <dt></dt>
+                        <dt></dt>
+                        <dt></dt>
+                        <dt></dt>
+                        <!--<dd>Street 2, Sansha Village, Henglan Town,</dd>-->
+                        <!--<dd>Zhongshan City, GD, China</dd>-->
+                        <dt>E-mail:<a href="{:url('contact/index')}" target="_blank" style="text-decoration:none">&nbsp;{$sys.e_mail}</a></dt>
+
+                    </dl>
+                </div><!--icon_tit-->
+
+                <div class="map"><img src="__INDEX__/templates/zh/en/images/map.jpg" /></div>
+
+                <div class="onweb">
+                    <p>On The Web:</p>
+                    <div>
+                        <a class="onweb1" href="{:url('contact/index')}">&nbsp;</a>
+                        <a class="onweb2" href="{:url('contact/index')}">&nbsp;</a>
+                        <a class="onweb3" href="{:url('contact/index')}">&nbsp;</a>
+                        <a class="onweb4" href="{:url('contact/index')}">&nbsp;</a>
+                    </div>
+                </div>
+
+            </div>
+        </div><!--fi-->
+
+        <div class="clear"></div>
+    </div><!--icontact_in-->
+</div><!--icontact-->
+
+<div id="bottom" style="background-color: #000000;">
+    <div class="bottom_in" style="background-color: #000000;">
+
+        <!--<div class="fl">-->
+            <!--报备信息-->
+            <!--<a href="javasript:" target="_blank">  </a> <a href='http://www.miibeian.gov.cn/' target='_blank'>粤#####号</a>-->
+
+        <!--</div>-->
+
+        <div class="fr" style=""><a href="" style="padding-left: 10px;"> Back Top</a></div>
+
+        <div class="clear"></div>
+    </div><!--bottom_in-->
+</div><!--bottom-->

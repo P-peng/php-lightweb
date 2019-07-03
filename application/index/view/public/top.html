@@ -1,0 +1,75 @@
+
+
+<div id="top">
+    <div class="top_in">
+        <div class="logo">
+            <a href="javascript:">
+                <img src="__IMG__/lightweb/{$sys.logo2}" />
+            </a>
+
+        </div>
+
+        <div class="ico">
+            <!--<p>{$sys.e_mail}</p>-->
+            <div class="ico_a">
+                <a class="ico_a1" href="{:url('contact/index')}" style="margin-left: 10%;">&nbsp;</a>
+                <a class="ico_a2" href="{:url('contact/index')}" style="margin-left: 11%;">&nbsp;</a>
+                <!--<a class="ico_a3" href="javascript:void(0)" onclick="qrshow()">&nbsp;</a>-->
+                <a class="ico_a4" href="{:url('contact/index')}" style="margin-right: 15%;">&nbsp;</a>
+            </div>
+        </div>
+
+    </div><!--top_in-->
+</div><!--top-->
+
+<script>
+    //menu
+    $(document).ready(function(){
+
+        $('.menu li').mousemove(function(){
+            $(this).find('dl').slideDown(150);//you can give it a speed
+        });
+        $('.menu li').mouseleave(function(){
+            $(this).find('dl').slideUp("fast");
+        });
+
+    });
+</script>
+
+<div id="nav">
+    <div class="menu">
+        <ul>
+            <!-- <li class=""><a class="nav_about" href="javascript:">Home</a> -->
+            {volist name="navCate" id="data"}
+                <li style="padding-right: 30px;" class=""><a class="nav_about"  href="{if condition="$data['type'] eq 0"}{:url($data.a)}{elseif condition="$data['type'] eq 1"/}{:url($data.a,array('id'=>$data.id))}{else /}{:url($data.a,array('id'=>$data.id))}{/if}">{$data['cateName']}</a>
+                    {if condition="$data['children'] neq -1"}
+                    <dl>
+                        {volist name="data.children" id="data2"}
+                            <dd><a href="{if condition="$data2['type'] eq 0"}{:url($data2.a)}{elseif condition="$data2['type'] eq 1"/}{:url('product/index',array('id'=>$data2.id))}{else /}{:url($data2.a,array('id'=>$data2.id))}{/if}">{$data2['cateName']}</a></dd>
+                        {/volist}
+                    </dl>
+                    {/if}
+                </li>
+            {/volist}
+
+
+            <div class="clear"></div>
+        </ul>
+
+        <div class="search">
+
+
+            <input class="sear_t" type="text" id="keys" name="keywords" value="Search products..." onfocus="if(this.value=='Search products...'){this.value=''}" onblur="if(this.value==''){this.value='Search products...';}" />
+            <input class="sear_b" id="search" onclick="search()" type="image" src="__INDEX__/templates/zh/en/images/sear_b.gif" border="0" />
+
+        </div><!--search-->
+        <script type="text/javascript">
+            function search() {
+               $keys = document.getElementById("keys").value;
+               window.location.href = "{:url('common/search')}?keys="+$keys;
+            }
+        </script>
+
+        <div class="clear"></div>
+    </div><!--menu-->
+</div><!--nav-->

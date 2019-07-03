@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta name="keywords" content="{$sys.name}">
+    <meta name="description" content="{$sys.name}">
+    <title>{$sys.name}</title>
+
+    <link rel="shortcut icon" href="__IMG__/lightweb/{$sys.logo1}">
+    <link href="__INDEX__/templates/zh/en/css/style.css" type="text/css" rel="stylesheet" />
+    <link href="__INDEX__/templates/zh/en/css/slick.css" type="text/css" rel="stylesheet" />
+    <link href="__INDEX__/templates/zh/en/css/jquery.bxslider.css" type="text/css" rel="stylesheet" />
+
+    <script src="__INDEX__/templates/zh/en/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function(){
+
+            $('.ppart').mousemove(function(){
+                $(this).find('.pro_cc').slideDown(300);
+                $(this).find('.pro_tt').slideUp(300);
+            });
+            $('.ppart').mouseleave(function(){
+                $(this).find('.pro_cc').slideUp(300);
+                $(this).find('.pro_tt').slideDown(300);
+            });
+
+        });
+
+    </script>
+</head>
+
+<body oncopy="document.selection.empty()" onselect="document.selection.empty()">
+
+<style>
+#jiathis_weixin_share {display:none;}
+</style>
+<script>
+function qrshow()
+{
+	var weixin = document.getElementById("jiathis_weixin_share")
+	weixin.style.display="block";
+}
+function qrhide()
+{
+	var weixin = document.getElementById("jiathis_weixin_share")
+	weixin.style.display="none";
+}
+</script>
+<div id="jiathis_weixin_share" style="position: fixed; z-index: 10000000001;">
+  <div id="jiathis_weixin_modal" style="background-clip: padding-box;background-color: #FFFFFF;border: 1px solid rgba(0, 0, 0, 0.3);  border-radius: 6px 6px 6px 6px;  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3); left: 50%; margin: -200px 0 0 -200px;overflow: hidden; position: fixed; top: 50%; width:360px;height:360px; overflow:hidden; border:1px solid #999;" class="jiathis_weixin_modal">
+    <div class="jiathis_modal_header" id="jiathis_modal_header" style="border-bottom: 1px solid #EEEEEE; padding: 9px 15px;">
+      <a style="text-decoration:none;  margin-top: 2px; color: #000000; float: right;  font-size: 20px;  font-weight: bold; cursor:pointer;line-height: 20px; opacity: 0.2; text-shadow: 0 1px 0 #FFFFFF;" class="jiathis_weixin_close" id="jiathis_weixin_close" onclick="qrhide()" target="_self">×</a>
+      <h3 id="jiathis_weixin_h3" style=" line-height: 30px; margin: 0; font-weight:normal;">
+        Share to wechat
+      </h3>
+    </div>
+    <div class="jiathis_modal_body" id="jiathis_modal_body" style="text-align:center;height:251px;">
+      <p id="jiathis_webchat">
+        <img src="templates/zh/en/images/qrcode.jpg" width="220" height="220" alt="二维码加载失败..." style="margin-top: 15px;">
+      </p>
+    </div>
+    <div class="jiathis_modal_footer" id="jiathis_modal_footer" style="border-radius: 0 0 6px 6px; border-top: 1px solid #DDDDDD; box-shadow: 0 1px 0 #FFFFFF inset; height:100%;padding:0 10px;padding-top:11px;text-align: right; font-size:12px;">
+      <div id="jiathis_weixin_tip" style="text-align:left;margin:0; padding:0;font-size:12px;">
+        Open wechat app, Click "find" on the bottom and Scan the QR code.
+      </div>
+    </div>
+  </div>
+</div>
+
+{include file="public/top"}<!--   导入头部  -->
+
+<div class="banner">
+    <!--[if IE 6]>
+    <ul class="bxslider">
+        <div><img src=""></div>
+        <div><img src=""></div>
+        <div><img src=""></div>
+    </ul>
+
+    <script>
+        $(document).ready(function(){
+            $('.bxslider').bxSlider({
+                mode:'fade',
+                auto: true,
+                speed: 500,
+                pager: true,
+                pause: 4500,
+                controls: true
+            });
+        });
+    </script>
+    <![endif]-->
+
+    <div class="slick">
+        <div><a href="javascript:"><img src="__IMG__/lightweb/{$sys.banner1}"></a></div>
+        <div><a href="javascript:"><img src="__IMG__/lightweb/{$sys.banner2}"></a></div>
+        <div><a href="javascript:"><img src="__IMG__/lightweb/{$sys.banner3}"></a></div>
+    </div>
+
+    <script>
+        $(function(){
+            $('.slick').slick({
+                dots: false,
+                fade: true,
+                autoplay: true,
+                pauseOnHover: false,
+                autoplaySpeed: 4500,
+                speed: 300
+            });
+        });
+    </script>
+</div><!--banner-->
+<div class="banner_bot"></div>
+
+<div class="ipro">
+    <div class="ptit">
+        <div>{$mainId1DataName.cateName}</div><!-- 标题title -->
+        <p></p>
+    </div>
+
+    <div class="pcon">
+        {volist name="mainId1Data" id="rhResData"}
+        <div class="ppart"><!-- 循环体开始 -->
+            <div class="pro_bb">
+                <div class="pro_aa"><a href="{:url('msg/index',array('id'=>$rhResData.id))}">&nbsp;</a></div><!-- 超链接 -->
+                <div class="pro_img"><img src="__IMG__/lightweb/{$rhResData.thumb1}" /></div><!-- 图片地址 -->
+                <div class="pro_tt">{$rhResData.keys}</div><!-- 关键字keys -->
+                <div class="pro_cc">
+                    <div class="pad">
+                        <p>{$rhResData.keys}</p><!-- 关键字keys -->
+                        <div>{$rhResData.desc}</div><!-- 描述desc -->
+                    </div>
+                </div><!--pro_cc-->
+            </div><!--pro_bb-->
+        </div><!--ppart--><!-- 循环体结束 -->
+        {/volist}
+        <div class="clear"></div>
+    </div><!--pcon-->
+    <div class="ipro_more">
+        <a href='{if condition='$mainId1DataName.a neq null'}{:url('products/index',array('id'=>$mainId1DataName['id']))}{else /}{:url('product/index',array('id'=>$mainId1DataName['id']))}{/if}'>View More+</a>
+    </div>
+</div><!--ipro-->
+
+<div class="ipro">
+
+    <div class="ptit">
+        <div>{$mainId2DataName.cateName}</div>
+        <p></p>
+    </div>
+
+    <div class="pcon">
+        {volist name="mainId2Data" id="rhResData"}
+        <div class="ppart"><!-- 循环体开始 -->
+            <div class="pro_bb">
+                <div class="pro_aa"><a href="{:url('msg/index',array('id'=>$rhResData.id,'cateid'=>$mainId2DataName.id))}">&nbsp;</a></div><!-- 超链接 -->
+                <div class="pro_img"><img src="__IMG__/lightweb/{$rhResData.thumb1}" /></div><!-- 图片地址 -->
+                <div class="pro_tt">{$rhResData.keys}</div><!-- 关键字keys -->
+                <div class="pro_cc">
+                    <div class="pad">
+                        <p>{$rhResData.keys}</p><!-- 关键字keys -->
+                        <div>{$rhResData.desc}</div><!-- 描述desc -->
+                    </div>
+                </div><!--pro_cc-->
+            </div><!--pro_bb-->
+        </div><!--ppart--><!-- 循环体结束 -->
+        {/volist}
+        <div class="clear"></div>
+    </div><!--pcon-->
+    <div class="ipro_more">
+        <a href='{if condition='$mainId2DataName.a neq null'}{:url('products/index',array('id'=>$mainId2DataName['id']))}{else /}{:url('product/index',array('id'=>$mainId2DataName['id']))}{/if}'">View More+</a></div>
+</div><!--ipro-->
+
+<div class="ipro">
+
+    <div class="ptit">
+        <div>{$mainId3DataName.cateName}</div>
+        <p></p>
+    </div>
+
+    <div class="pcon">
+        {volist name="mainId3Data" id="rhResData"}
+        <div class="ppart"><!-- 循环体开始 -->
+            <div class="pro_bb">
+                <div class="pro_aa"><a href="{:url('msg/index',array('id'=>$rhResData.id,'cateid'=>$mainId3DataName.id))}">&nbsp;</a></div><!-- 超链接 -->
+                <div class="pro_img"><img src="__IMG__/lightweb/{$rhResData.thumb1}" /></div><!-- 图片地址 -->
+                <div class="pro_tt">{$rhResData.keys}</div><!-- 关键字keys -->
+                <div class="pro_cc">
+                    <div class="pad">
+                        <p>{$rhResData.keys}</p><!-- 关键字keys -->
+                        <div>{$rhResData.desc}</div><!-- 描述desc -->
+                    </div>
+                </div><!--pro_cc-->
+            </div><!--pro_bb-->
+        </div><!--ppart--><!-- 循环体结束 -->
+        {/volist}
+        <div class="clear"></div>
+    </div><!--pcon-->
+    <div class="ipro_more">
+        <a href='{if condition='$mainId3DataName.a neq null'}{:url('products/index',array('id'=>$mainId3DataName['id']))}{else /}{:url('product/index',array('id'=>$mainId3DataName['id']))}{/if}'">View More+</a></div>
+</div><!--ipro-->
+
+<div class="row">
+    <div class="row_in" style="">
+        <div >
+                <div class="iabo_c" style="">
+                <img src="__IMG__/lightweb/{$sys.logo1}" width="75px"  align="left" class="iabo_img" />
+                    <div class="iabo_t"><a href="{:url('aboutus/index',array('id'=>2))}"> <span style="font-size: 23px;">ABOUT {$sys.name}</span></a></div>
+                <span style="font-size: 18px;line-height: 28px;">
+                    Our goal is to be the leading lamps manufacturer and supplier in the world's lighting industry. Our mission is to create high taste of modern illuminations to optimize people's residential environment and bring customers a most exciting buying experience by offering affordable price, good quality, and reliable lights. We are committed to creating value through providing quality services and products that exceed our c.Because of you, so we have been refueling, has been growing, always on the road...
+                </span>
+                </div>
+        </div><!--iabo-->
+
+
+
+    </div><!--row_in-->
+</div><!--row-->
+
+
+
+<script>
+$(document).ready(function(){
+  
+  $('.pre_part').mousemove(function(){
+  $(this).find('.pre_hover').fadeIn();
+  });
+  $('.pre_part').mouseleave(function(){
+  $(this).find('.pre_hover').fadeOut("fast");
+  });
+  
+});
+</script>
+
+{include file="public/low"}
+
+
+<!-- Google Code for designerchandelier Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 860512205;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "orW7CMqn9W4Qzb-pmgM";
+var google_conversion_value = 1.00;
+var google_conversion_currency = "USD";
+var google_remarketing_only = false;
+/* ]]> */
+</script>
+<script type="text/javascript" src="../www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="http://www.googleadservices.com/pagead/conversion/860512205/?value=1.00&amp;currency_code=USD&amp;label=orW7CMqn9W4Qzb-pmgM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+
+</body>
+<script src="__INDEX__/templates/zh/en/js/slick.js" type="text/javascript"></script>
+<script src="__INDEX__/templates/zh/en/js/jquery.bxslider.js" type="text/javascript"></script>
+<!-- Mirrored from www.designerchandelier.cn/home.php by HTTrack Website Copier/3.x [XR&CO'2013], Wed, 07 Mar 2018 13:16:51 GMT -->
+</html>

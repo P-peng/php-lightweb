@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html><head>
+	    <meta charset="utf-8">
+    <title>管理系统</title>
+
+    <meta name="description" content="Dashboard">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--Basic Styles-->
+    <link href="__ADMIN__/style/bootstrap.css" rel="stylesheet">
+    <link href="__ADMIN__/style/font-awesome.css" rel="stylesheet">
+    <link href="__ADMIN__/style/weather-icons.css" rel="stylesheet">
+
+    <!--Beyond styles-->
+    <link id="beyond-link" href="__ADMIN__/style/beyond.css" rel="stylesheet" type="text/css">
+    <link href="__ADMIN__/style/demo.css" rel="stylesheet">
+    <link href="__ADMIN__/style/typicons.css" rel="stylesheet">
+    <link href="__ADMIN__/style/animate.css" rel="stylesheet">
+    
+</head>
+<body>
+	<!-- 头部 -->
+    {include file="public/top"}
+
+	<!-- /头部 -->
+	
+	<div class="main-container container-fluid">
+		<div class="page-container">
+			            <!-- Page Sidebar -->
+            {include file="public/left"}
+            <!-- /Page Sidebar -->
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Page Breadcrumb -->
+                <div class="page-breadcrumbs">
+                    <ul class="breadcrumb">
+                        <li><a href="{:url('index/index')}">系统</a></li>
+                        <li class="active">产品管理</li>
+                    </ul>
+                </div>
+                <!-- /Page Breadcrumb -->
+
+                <!-- Page Body -->
+                <div class="page-body">
+
+<button type="button" tooltip="添加用户"  class="btn btn-sm btn-azure btn-addon" style="width: 10%;height: 130%;padding-top: 0.75%;padding-bottom: 0.8%;" onClick="javascript:window.location.href = '{:url('add')}'">
+    <i class="fa fa-plus" ></i> Add
+</button>
+
+<button class="btn btn-sm btn-azure btn-addon" onclick="classify();" style="float: right;right: 45%;width: 10%;height: 130%;padding-top: 0.75%;padding-bottom: 0.8%;">点击分类</button>
+<button class="btn btn-sm btn-azure btn-addon" onclick="search();" style="float: right;right: 0%;width: 10%;height: 130%;padding-top: 0.75%;padding-bottom: 0.8%;">点击搜索关键字</button>
+<input type="text" id="keys" style="float:right;right:10%;height: 2.7em;padding-left: 1%" maxlength="10" placeholder="输入关键字key" />
+<div style="float: right;margin-right:55%;width: 30%;margin-top: -3.2%;margin-bottom: 0.1%;">
+    <button class="btn btn-sm btn-azure btn-addon" style="width: 100%;padding: 0px;cursor:text;"><p style="float: left;margin-top:2%;margin-bottom:-2%;margin-left: 3%">分类选择</p>
+        <div class="col-sm-6" style="float: right;right: 32%;height: 100%;">
+        <select name="pid" id="classify" style="width: 190%;">
+            <option value="0" selected="selected">无</option>
+            {volist name="cateRes" id="cateResData"}
+            <option value="{$cateResData.id}" {if condition="$cateResData.id eq $id" }selected="selected"{/if}>{if condition="$cateResData.level neq '0'"}<?php echo("|");echo str_repeat('-',$cateResData['level']*8);?>{$cateResData.cateName}{else /}{$cateResData.cateName}{/if}</option>
+            {/volist}
+        </select>
+        </div>
+
+    </button>
+
+    <div class="clear"></div>
+</div>
+<script type="text/javascript">
+    function classify() {
+       var v = document.getElementById("classify").value;
+       window.location.href = '{:url('product/classify')}?id='+v;
+    }
+    function search() {
+        var keys = document.getElementById("keys").value;
+        if(keys == ""){
+            alert("关键字为空，无法匹配");
+        }else{
+            window.location.href = '{:url('product/search')}?keys='+keys;
+        }
+    }
+</script>
+
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="widget">
+
+            <div class="widget-body">
+                <div class="flip-scroll">
+                    <table class="table table-bordered table-hover">
+                        <thead class="">
+                            <tr>
+                                <th class="text-center" style="width:5%;">ID</th>
+                                    <th class="text-center" style="width: 5%;">排序</th>
+                                <th class="text-center">主图</th>
+                                <th class="text-center">副图1</th>
+                                <th class="text-center">副图2</th>
+                                <th class="text-center">副图3</th>
+                                <th class="text-center" style="width: 10%">所属栏目</th>
+                                <th class="text-center" style="width: 10%;height: 30%;">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {volist name="productData" id="res"}
+                            <tr style="height:20%;">
+                                <td align="center" style="font-size: 1.5em;"><span style="text-align: center;margin-top: 100%;display: inline-block;">{$res.id}</span></td>
+                                <td align="center" style="line-height:100%;font-size: 1.5em;padding: 0;margin: 0"><input type="text" name="12}" style="width: 50px;text-align: center;margin-top: 82%" value="{$res.sort}"></td>
+                                <td align="center" ><img src="__IMG__/lightweb/{$res.thumb1}" width="100px" /></td><!-- 可改善 -->
+                                <td align="center"><img src="{if condition="$res['thumb2'] neq ''"}__IMG__/lightweb/{/if}{$res.thumb2}" width="100px" /></td>
+                                <td align="center"><img src="{if condition="$res['thumb3'] neq ''"}__IMG__/lightweb/{/if}{$res.thumb3}" width="100px" /></td>
+                                <td align="center"><img src="{if condition="$res['thumb4'] neq ''"}__IMG__/lightweb/{/if}{$res.thumb4}" width="100px" /></td>
+                                <th class="text-center"><span style="text-align: center;margin-top: 45%;display: inline-block;">{$res.cateName}</span></th>
+                                <td align="center"style="height: 30%;">
+                                    <a style="margin-top: 20%" href="{:url('edit',array('id' => $res.id))}" class="btn btn-primary btn-sm shiny" >
+                                        <i class="fa fa-edit"></i> 编辑
+                                    </a>
+                                    <a  style="margin-top: 20%" href="javascript:" onClick="warning('确实要删除吗', '{:url(\'del\',array(\'id\' => $res.id))}')" class="btn btn-danger btn-sm shiny">
+                                        <i class="fa fa-trash-o"></i> 删除
+                                    </a>
+                                </td>
+                            </tr>
+                            {/volist}
+
+                        </tbody>
+                    </table>
+
+                </div>
+                <div>{$productData->render()}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                </div>
+                <!-- /Page Body -->
+            </div>
+            <!-- /Page Content -->
+		</div>	
+	</div>
+
+	    <!--Basic Scripts-->
+    <script src="__ADMIN__/style/jquery_002.js"></script>
+    <script src="__ADMIN__/style/bootstrap.js"></script>
+    <script src="__ADMIN__/style/jquery.js"></script>
+    <!--Beyond Scripts-->
+    <script src="__ADMIN__/style/beyond.js"></script>
+
+
+
+</body></html>

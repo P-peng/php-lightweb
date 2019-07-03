@@ -1,0 +1,222 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<meta name="keywords" content="{$sys.name}">
+<meta name="description" content="{$sys.name}">
+<title>{$sys.name}</title>
+
+    <!-- 从写放大效果 -->
+    <link href="__INDEX__/cw/base.css" rel="stylesheet" type="text/css" />
+
+<link href="__INDEX__/templates/zh/en/css/style.css" type="text/css" rel="stylesheet" />
+<link rel="shortcut icon" href="favicon.ico">
+<script src="__INDEX__/templates/zh/en/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+<script src="__INDEX__/templates/zh/en/js/metatitle.js" type="text/javascript"></script><link href="__INDEX__/templates/zh/en/css/cloud-zoom.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__INDEX__/templates/zh/en/js/jquery.min.js"></script>
+<script type="text/javascript" src="__INDEX__/templates/zh/en/js/cloud-zoom.1.0.2.js"></script>
+
+    <!-- 从写放大效果 -->
+    <script type="text/javascript" src="__INDEX__/cw/base.js"></script>
+    <script type="text/javascript" src="__INDEX__/cw/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="__INDEX__/cw/jquery.jqzoom.js"></script>
+<script>
+$.fn.CloudZoom.defaults = {<!--  start 缩放大小设置 -->
+	zoomWidth: '320',
+    zoomHeight: '320',
+	position: 'right',
+    tint: false,
+    tintOpacity: 0.5,
+    lensOpacity: 0.5,
+    softFocus: false,
+    smoothMove: 4,
+    showTitle: true,
+    titleOpacity: 0.5,
+    adjustX: 0,
+    adjustY: 0
+}<!--  end 缩放大小设置 -->
+document.title = "{$sys.name}";//标题从命名
+</script>
+
+<script src="__INDEX__/templates/zh/en/js/jsScroller.js" type="text/javascript"></script>
+<script src="__INDEX__/templates/zh/en/js/jsScrollbar.js" type="text/javascript"></script>
+<script type="text/javascript">
+var scroller  = null;
+var scrollbar = null;
+window.onload = function () {
+  scroller  = new jsScroller(document.getElementById("Scroller-1"), 400, 200);
+  scrollbar = new jsScrollbar (document.getElementById("Scrollbar-Container"), scroller, false);
+}
+</script>
+<link href="__INDEX__/templates/zh/en/css/Scrollbar.css" type="text/css" rel="stylesheet" />
+
+<script>
+$(document).ready(function(){
+
+  $('.pro_part').mousemove(function(){
+  $(this).find('.pro_cc').slideDown(300);
+  $(this).find('.pro_tt').slideUp(300);
+  });
+  $('.pro_part').mouseleave(function(){
+  $(this).find('.pro_cc').slideUp(300);
+  $(this).find('.pro_tt').slideDown(300);
+  });
+
+});
+</script>
+
+</head>
+
+<body  oncopy="document.selection.empty()" onselect="document.selection.empty()">
+
+<style>
+#jiathis_weixin_share {display:none;}
+</style>
+<script>
+function qrshow()
+{
+	var weixin = document.getElementById("jiathis_weixin_share")
+	weixin.style.display="block";
+}
+function qrhide()
+{
+	var weixin = document.getElementById("jiathis_weixin_share")
+	weixin.style.display="none";
+}
+</script>
+<div id="jiathis_weixin_share" style="position: fixed; z-index: 10000000001;">
+  <div id="jiathis_weixin_modal" style="background-clip: padding-box;background-color: #FFFFFF;border: 1px solid rgba(0, 0, 0, 0.3);  border-radius: 6px 6px 6px 6px;  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3); left: 50%; margin: -200px 0 0 -200px;overflow: hidden; position: fixed; top: 50%; width:360px;height:360px; overflow:hidden; border:1px solid #999;" class="jiathis_weixin_modal">
+    <div class="jiathis_modal_header" id="jiathis_modal_header" style="border-bottom: 1px solid #EEEEEE; padding: 9px 15px;">
+      <a style="text-decoration:none;  margin-top: 2px; color: #000000; float: right;  font-size: 20px;  font-weight: bold; cursor:pointer;line-height: 20px; opacity: 0.2; text-shadow: 0 1px 0 #FFFFFF;" class="jiathis_weixin_close" id="jiathis_weixin_close" onclick="qrhide()" target="_self">×</a>
+      <h3 id="jiathis_weixin_h3" style=" line-height: 30px; margin: 0; font-weight:normal;">
+        Share to wechat
+      </h3>
+    </div>
+    <div class="jiathis_modal_body" id="jiathis_modal_body" style="text-align:center;height:251px;">
+      <p id="jiathis_webchat">
+        <img src="__INDEX__/templates/zh/en/images/qrcode.jpg" width="220" height="220" alt="二维码加载失败..." style="margin-top: 15px;">
+      </p>
+    </div>
+    <div class="jiathis_modal_footer" id="jiathis_modal_footer" style="border-radius: 0 0 6px 6px; border-top: 1px solid #DDDDDD; box-shadow: 0 1px 0 #FFFFFF inset; height:100%;padding:0 10px;padding-top:11px;text-align: right; font-size:12px;">
+      <div id="jiathis_weixin_tip" style="text-align:left;margin:0; padding:0;font-size:12px;">
+        Open wechat app, Click "find" on the bottom and Scan the QR code.
+      </div>
+    </div>
+  </div>
+</div>
+
+{include file="public/top"}
+
+<div id="page">
+    <div id="left">
+        <div class="left_in">
+            {volist name="cateData" id="data"}
+            <div class="left_tit">
+                {if condition="$data['cateName'] neq '-1'"}
+                {$data.cateName} CATEGORIES
+                {else /}
+                PRODUCTS CATEGORIES
+                {/if}
+            </div>
+                <ul>
+                    {if condition="$data['cateName'] neq '-1'"}
+                        {if condition="$data['children'] neq '-1'"}
+                            {volist name="data.children" id="data2"}
+                                <li>
+                                    <a href="{:url('product/index',array('id'=>$data2.id))}">{$data2.cateName}</a><!-- 超链接未完成 -->
+                                    <dl></dl>
+                                </li>
+                            {/volist}
+                        {/if}
+                    {/if}
+                </ul>
+            {/volist}
+        </div>
+
+        <script>
+        //menu
+        $(document).ready(function(){
+
+          $('.more').click(function(){
+          $(this).parent('li').find('dl').slideToggle(150);
+          $(this).toggleClass("moreout");
+          });
+
+        });
+        </script>
+    </div>
+  
+  <div id="right">
+      <div class="pro_page">
+    
+      <div class="pro_position" >
+          <!--<div class="pro_left" style="border: 1px solid red">-->
+              <!--<div class="zoom-section">-->
+                  <!--<div class="zoom-small-image">&lt;!&ndash; 放大效果+图片 &ndash;&gt;-->
+                      <!--<a href='/lightweb/{$proData.thumb1}' class = 'cloud-zoom' id='zoom1' rel="adjustX: 10, adjustY:-4">-->
+                          <!--<img src="/lightweb/{$proData.thumb1}" alt='' title="Z0726-30BL" />-->
+                      <!--</a>-->
+                  <!--</div>-->
+                  <!--<div class="zoom-desc">-->
+                      <!--<p>-->
+                          <!--<a href="__INDEX__/upfiles/201510/16/1444977652_15.jpg" class='cloud-zoom-gallery' rel="useZoom: 'zoom1', smallImage: '__INDEX__/upfiles/201510/16/mark_1444977652_15.jpg' "><img class="zoom-tiny-image" src="/lightweb/{$proData.thumb1}" /></a>-->
+                      <!--</p>-->
+                  <!--</div>&lt;!&ndash;zoom-desc&ndash;&gt;-->
+              <!--</div>&lt;!&ndash;zoom-section&ndash;&gt;-->
+          <!--</div>&lt;!&ndash;pro_left&ndash;&gt;-->
+
+          <div class="right-extra" style="">
+              <!--产品参数开始-->
+              <div>
+                  <div id="preview" class="spec-preview"> <span class="jqzoom"><img jqimg="/lightweb/{$proData.thumb1}" src="/lightweb/{$proData.thumb1}" width="350" /></span> </div>
+                  <!--缩图开始-->
+                  <div class="spec-scroll"> <a class="prev">&lt;</a> <a class="next">&gt;</a>
+                      <div class="items">
+                          <ul>
+                              <li style="margin-left:15px;"><img alt="佳能" bimg="/lightweb/{$proData.thumb1}" src="/lightweb/{$proData.thumb1}" onmousemove="preview(this);"></li>
+                              <li style="margin-left:15px;"><img alt="佳能" bimg="/lightweb/{$proData.thumb2}" src="/lightweb/{$proData.thumb2}" onmousemove="preview(this);"></li>
+                              <li style="margin-left:15px;"><img alt="佳能" bimg="images/1509414995_51.jpg" src="images/1509414995_51.jpg" onmousemove="preview(this);"></li>
+                          </ul>
+                      </div>
+                  </div>
+                  <!--缩图结束-->
+              </div>
+              <!--产品参数结束-->
+              <div style="clear:both;height:10px;"></div>
+          </div>
+    
+
+        
+        <div class="clear"></div>
+      </div>
+    
+    <div class="pro_others">
+
+      <div class="pro_otitle">Others</div>
+
+       {volist name="order" id="orderData"}
+      <div class="pro_opart">
+        <div style="float:left;">
+          <div><a href="{:url('msg/index',array('id' => $orderData.id))}"><img src="/lightweb/{$orderData.thumb1}" /></a></div>
+          <p><a href="#">{$orderData.pdName}</a></p>
+        </div>
+
+      </div>
+        {/volist}
+      
+                  <div class="clear"></div>
+    </div>
+    
+    </div><!--pro_page-->
+  </div><!--right-->
+  
+  <div class="clear"></div>
+</div><!--page-->
+
+{include file="public/low"}
+
+</body>
+
+<!-- Mirrored from www.designerchandelier.cn/msg.php?id=304&fid=27 by HTTrack Website Copier/3.x [XR&CO'2013], Wed, 07 Mar 2018 13:51:44 GMT -->
+</html>

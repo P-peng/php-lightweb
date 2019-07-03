@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<meta name="keywords" content="{$sys.name}">
+<meta name="description" content="{$sys.name}">
+<title>{$sys.name}</title>
+
+<link rel="shortcut icon" href="__IMG__/lightweb/{$sys.logo1}">
+<link href="__INDEX__/templates/zh/en/css/style.css" type="text/css" rel="stylesheet" />
+<link href="__INDEX__/templates/zh/en/css/slick.css" type="text/css" rel="stylesheet" />
+<link href="__INDEX__/templates/zh/en/css/jquery.bxslider.css" type="text/css" rel="stylesheet" />
+<script src="__INDEX__/templates/zh/en/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+<script src="__INDEX__/templates/zh/en/js/slick.js" type="text/javascript"></script>
+<script src="__INDEX__/templates/zh/en/js/jquery.bxslider.js" type="text/javascript"></script>
+
+<script>
+$(document).ready(function(){
+
+  $('.ppart').mousemove(function(){
+  $(this).find('.pro_cc').slideDown(300);
+  $(this).find('.pro_tt').slideUp(300);
+  });
+  $('.ppart').mouseleave(function(){
+  $(this).find('.pro_cc').slideUp(300);
+  $(this).find('.pro_tt').slideDown(300);
+  });
+
+});
+
+</script>
+</head>

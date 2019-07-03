@@ -1,0 +1,163 @@
+﻿{include file="public/title"}<!--   导入头部  -->
+
+<body>
+
+<style>
+#jiathis_weixin_share {display:none;}
+</style>
+<script>
+function qrshow()
+{
+	var weixin = document.getElementById("jiathis_weixin_share")
+	weixin.style.display="block";
+}
+function qrhide()
+{
+	var weixin = document.getElementById("jiathis_weixin_share")
+	weixin.style.display="none";
+}
+</script>
+<div id="jiathis_weixin_share" style="position: fixed; z-index: 10000000001;"><!-- 微信 -->
+  <div id="jiathis_weixin_modal" style="background-clip: padding-box;background-color: #FFFFFF;border: 1px solid rgba(0, 0, 0, 0.3);  border-radius: 6px 6px 6px 6px;  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3); left: 50%; margin: -200px 0 0 -200px;overflow: hidden; position: fixed; top: 50%; width:360px;height:360px; overflow:hidden; border:1px solid #999;" class="jiathis_weixin_modal">
+    <div class="jiathis_modal_header" id="jiathis_modal_header" style="border-bottom: 1px solid #EEEEEE; padding: 9px 15px;">
+      <a style="text-decoration:none;  margin-top: 2px; color: #000000; float: right;  font-size: 20px;  font-weight: bold; cursor:pointer;line-height: 20px; opacity: 0.2; text-shadow: 0 1px 0 #FFFFFF;" class="jiathis_weixin_close" id="jiathis_weixin_close" onclick="qrhide()" target="_self">×</a>
+      <h3 id="jiathis_weixin_h3" style=" line-height: 30px; margin: 0; font-weight:normal;">
+        Share to wechat
+      </h3>
+    </div>
+    <div class="jiathis_modal_body" id="jiathis_modal_body" style="text-align:center;height:251px;">
+      <p id="jiathis_webchat">
+        <img src="__INDEX__/templates/zh/en/images/qrcode.jpg" width="220" height="220" alt="二维码加载失败..." style="margin-top: 15px;">
+      </p>
+    </div>
+    <div class="jiathis_modal_footer" id="jiathis_modal_footer" style="border-radius: 0 0 6px 6px; border-top: 1px solid #DDDDDD; box-shadow: 0 1px 0 #FFFFFF inset; height:100%;padding:0 10px;padding-top:11px;text-align: right; font-size:12px;">
+      <div id="jiathis_weixin_tip" style="text-align:left;margin:0; padding:0;font-size:12px;">
+        Open wechat app, Click "find" on the bottom and Scan the QR code.
+      </div>
+    </div>
+  </div>
+</div>
+
+{include file="public/top"}
+
+<div id="page">
+  <div class="pro_page">
+    <div class="page_tit">Contact Us</div>
+    <div class="page_con"><div><span style="font-weight: bold;font-size: 1.2em;">Address:&nbsp;</span><a href="javascript:"   target='_blank'><span style="color: #0099cc;"><u style="text-decoration:none">{$sys.address}</u></span></a></div>
+<!--<div>联系方式</div>-->
+<!--<div>传真</div>-->
+<div><span style="font-weight: bold;font-size: 1.2em;">E-maill:&nbsp;</span><a href="javascript:"   target='_blank'><span style="color: #0099cc;"><u style="text-decoration:none">{$sys.e_mail}</u></span></a> &nbsp;</div>
+<div><span style="font-weight: bold;font-size: 1.2em;">Tel:&nbsp;</span><a href="javascript:"   target='_blank'><span style="color: #0099cc"><u style="text-decoration:none">{$sys.tel}</u ></span></a> &nbsp;</div>
+      <div><span style="font-weight: bold;font-size: 1.2em;">Fax:&nbsp;</span><a href="javascript:"   target='_blank'><span style="color: #0099cc;"><u style="text-decoration:none">{$sys.fax}</u></span></a> &nbsp;</div>
+
+      <!--<div>Twitter: <a href="javascript:" tatget="_blank"   target='_blank'><span style="color: #0099cc;"><u>Twitter:</u></span></a></div>-->
+<!--<div>Skype:&nbsp;<a class="ico_a4" href="javascript:"   target='_blank'><span style="color: #0099cc;"><u>Skype:</u></span></a></div>-->
+      <style type="text/css">
+		.map_box{
+			margin:10px auto 0;
+			height:580px;
+			width:1108px;
+			border:1px solid #999;
+			position:relative;
+			overflow:hidden;
+		}
+		.amap-logo, .amap-copyright {width:0; height:0; display:none; visibility:hidden;}
+		#mapContainer{
+			height:100%;
+			width:100%;
+		}
+		
+		#btnDiv{
+			position:absolute;
+			bottom:20px;
+			right:20px;
+		}
+		
+		#btnDiv input{
+			height:28px;
+			line-height:28px;
+			background-color: #0D9BF2;
+			color:#FFF;
+			border:0;
+			outline:none;
+			padding-left: 5px;
+			padding-right:5px;
+			border-radius:3px;
+			cursor:pointer;
+		}
+		#tip{
+			height:70px;
+			background-color:#fff;
+			padding-left:10px;
+			padding-right:10px;
+			position:absolute;
+			font-size:12px;
+			right:10px;
+			bottom:80px;
+			border-radius:3px;
+			line-height:30px;
+			border:1px solid #ccc;
+		}
+		.amap-info-content{
+			font-size:12px;
+		}
+		
+		#tip input[type='button']{
+			height:28px;
+			line-height:28px;
+			outline:none;
+			text-align:center;
+			padding-left:5px;
+			padding-right:5px;
+			color:#FFF;
+			background-color:#0D9BF2;
+			border:0;
+			border-radius: 3px;
+			margin-top:5px;
+			margin-left:5px;
+			cursor:pointer;
+			margin-right:10px;
+		}
+	</style>
+</head>
+    <div class="map_box"><div id="mapContainer"></div></div>
+
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&amp;key=bab8da27a1bc4c825235e043ae078b6d"></script>
+    <script type="text/javascript">
+		//初始化地图对象，加载地图
+		var map = new AMap.Map('mapContainer',{
+			resizeEnable: true,
+	        rotateEnable:true,
+	        dragEnable:true,
+	        zoomEnable:true,
+	        //二维地图显示视口
+	        //设置地图中心点
+	        //设置地图显示的缩放级别
+	        view: new AMap.View2D({
+	            center: new AMap.LngLat(113.222014,22.595894),//地图中心点调用
+	            zoom: 15 
+	        })
+	    });
+	    map.setLang('en');
+
+		    var info = []; 
+			info.push("<div style=\"padding:0px 0px 0px 4px;color:#0099cc;font-size:14px;\"><b>{$sys.name}</b></div>");
+			info.push("{$sys.address}");
+
+      
+			infoWindow = new AMap.InfoWindow({  
+				content:info.join("<br/>")  //使用默认信息窗体框样式，显示信息内容
+			}); 
+			infoWindow.open(map, new AMap.LngLat(113.222014,22.595894));
+		
+		//}
+		
+	</script></div>
+  </div>
+</div><!--page-->
+
+{include file="public/low"}
+
+</body>
+
+</html>

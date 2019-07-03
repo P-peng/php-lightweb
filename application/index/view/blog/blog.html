@@ -1,0 +1,113 @@
+﻿{include file="public/title"}<!--   导入头部  -->
+
+<body oncopy="document.selection.empty()" onselect="document.selection.empty()">
+
+<style>
+#jiathis_weixin_share {display:none;}
+</style>
+<script>
+function qrshow()
+{
+	var weixin = document.getElementById("jiathis_weixin_share")
+	weixin.style.display="block";
+}
+function qrhide()
+{
+	var weixin = document.getElementById("jiathis_weixin_share")
+	weixin.style.display="none";
+}
+</script>
+<div id="jiathis_weixin_share" style="position: fixed; z-index: 10000000001;">
+  <div id="jiathis_weixin_modal" style="background-clip: padding-box;background-color: #FFFFFF;border: 1px solid rgba(0, 0, 0, 0.3);  border-radius: 6px 6px 6px 6px;  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3); left: 50%; margin: -200px 0 0 -200px;overflow: hidden; position: fixed; top: 50%; width:360px;height:360px; overflow:hidden; border:1px solid #999;" class="jiathis_weixin_modal">
+    <div class="jiathis_modal_header" id="jiathis_modal_header" style="border-bottom: 1px solid #EEEEEE; padding: 9px 15px;">
+      <a style="text-decoration:none;  margin-top: 2px; color: #000000; float: right;  font-size: 20px;  font-weight: bold; cursor:pointer;line-height: 20px; opacity: 0.2; text-shadow: 0 1px 0 #FFFFFF;" class="jiathis_weixin_close" id="jiathis_weixin_close" onclick="qrhide()" target="_self">×</a>
+      <h3 id="jiathis_weixin_h3" style=" line-height: 30px; margin: 0; font-weight:normal;">
+        Share to wechat
+      </h3>
+    </div>
+    <div class="jiathis_modal_body" id="jiathis_modal_body" style="text-align:center;height:251px;">
+      <p id="jiathis_webchat">
+        <img src="__INDEX__/templates/zh/en/images/qrcode.jpg" width="220" height="220" alt="二维码加载失败..." style="margin-top: 15px;">
+      </p>
+    </div>
+    <div class="jiathis_modal_footer" id="jiathis_modal_footer" style="border-radius: 0 0 6px 6px; border-top: 1px solid #DDDDDD; box-shadow: 0 1px 0 #FFFFFF inset; height:100%;padding:0 10px;padding-top:11px;text-align: right; font-size:12px;">
+      <div id="jiathis_weixin_tip" style="text-align:left;margin:0; padding:0;font-size:12px;">
+        Open wechat app, Click "find" on the bottom and Scan the QR code.
+      </div>
+    </div>
+  </div>
+</div>
+
+{include file="public/top"}
+
+
+<div id="page">
+  <div id="left"><div class="left_in">
+
+      <div class="left_tit">BLOG & BULLETINBOARD</div>
+      {volist name="leftData" id="leftRes"}
+      <div class="hot_pro">
+          <div class="hot_part">
+              <div class="fl"><a href="{:url('products/index',array('id'=>$leftRes.id))}"><img src="__IMG__/lightweb/{$leftRes.thumb1}" /></a></div>
+              <div class="fi">
+                <div>{$leftRes.pdName}</div>
+                <p><a href="{:url('product/index',array('id'=>$leftRes.cateid))}">VIEW MORE+</a></p>
+              </div>
+              <div class="clear"></div>
+          </div>
+      </div>
+      {/volist}
+</div>
+
+<script>
+//menu
+$(document).ready(function(){
+  
+  $('.more').click(function(){
+  $(this).parent('li').find('dl').slideToggle(150);
+  $(this).toggleClass("moreout");
+  });
+  
+});
+</script></div>
+  
+  <div id="right">
+      {volist name="blogData" id="blogRes"}
+      <div class="pro_page">
+            <div class="news_list">
+                <div class="page_tit">
+                    <span >{$blogRes.title}</span>
+                </div>
+                <div class="page_mes">Posted on
+                    <?php
+                    $k = strpos($blogRes['time'],"/");
+                    echo substr($blogRes['time'],0,$k);
+                    echo " ".substr($blogRes['time'],$k+1,strlen($blogRes['time']));
+                  ?>
+                </div>
+                <div class="page_line"></div>
+                <div class="page_con">
+                    {if condition="$blogRes.thumb neq ''"}
+                    <div>
+                        <img src="__IMG__/lightweb/{$blogRes.thumb}" width="300px" height="300px;"   border="0" alt="" align="left" style="padding:0 16px 0 0;" />
+                    </div>
+                    {/if}
+                    <div>{$blogRes.content}
+                    </div>
+
+                </div>
+            </div><!--news_list-->
+    </div>
+      {/volist}
+
+  </div><!--right-->
+
+  <div class="clear"></div>
+</div><!--page-->
+
+{include file="public/low"}
+
+</body>
+
+<!-- Mirrored from www.designerchandelier.cn/blog.php by HTTrack Website Copier/3.x [XR&CO'2013], Wed, 07 Mar 2018 13:21:01 GMT -->
+</html>
